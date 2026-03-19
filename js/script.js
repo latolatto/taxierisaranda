@@ -1,6 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-
+function scrollToTop(){
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
 
     const navbar = document.getElementById("navbar");
 
@@ -18,17 +23,27 @@ AOS.init();
 const WHATSAPP_NUMBER = "355676320030";
 
 function sendLocationWhatsApp(){
-  if(!navigator.geolocation) return;
+
+  if(!navigator.geolocation){
+    alert("Geolocation not supported");
+    return;
+  }
 
   navigator.geolocation.getCurrentPosition((position)=>{
+
     const lat = position.coords.latitude;
     const lng = position.coords.longitude;
 
     const mapsLink = `https://maps.google.com/?q=${lat},${lng}`;
+
     const message = encodeURIComponent(`My location is: ${mapsLink}`);
 
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank");
+    window.open(`https://wa.me/355676320030?text=${message}`, "_blank");
+
+  }, () => {
+    alert("Location access denied");
   });
+
 }
 
 window.sendLocationWhatsApp = sendLocationWhatsApp;
