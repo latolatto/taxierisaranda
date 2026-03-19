@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Taxi Eri Saranda | Taxi Saranda Airport Transfer Ksamil</title>
+     <link rel="icon" type="image/x-icon" href="images/taxilogo.png">
+
+<link rel="icon" href="favicon.ico">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet" href="css/styles.css">
+
+<!-- Animation library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<!-- SEO Schema -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "LocalBusiness",
+ "name": "Taxi Eri Saranda",
+ "image": "images/logo.png",
+ "telephone": "+355676320030",
+ "address": {
+   "@type": "PostalAddress",
+   "addressLocality": "Saranda",
+   "addressCountry": "Albania"
+ },
+ "aggregateRating": {
+   "@type": "AggregateRating",
+   "ratingValue": "5.0",
+   "reviewCount": "700"
+ }
+}
+</script>
+
+</head>
+
+<body class="bg-white text-gray-900">
+
+<!-- TOP BAR -->
+<!-- <div class="bg-gray-100 text-sm py-2 px-6 flex justify-between" id="one">
+<div>📞 +355 67 632 0030</div>
+<div>✉️ taxierisaranda@gmail.com</div>
+</div> -->
+
+
+<!-- HEADER -->
+<header id="navbar"
+class="fixed top-0 w-full z-50 transition-all duration-300">
+
+<div class="menu max-w-6xl mx-auto flex justify-between items-center py-4 px-6">
+
+<div class="flex items-center gap-3">
+<a href="#one"><img src="images/whitelayoutlogo.png" class="header-logo"></a>
+</div>
+
+<div class="flex gap-4">
+<a href="tel:+355676320030"
+class="bg-yellow-400 px-4 py-2 rounded-xl font-semibold">
+Call Us
+</a>
+
+<button onclick="scrollToContact()"
+class="bg-green-500 text-white px-4 py-2 rounded-xl font-semibold">
+Contact
+</button>
+</div>
+
+</div>
+</header>
+
+
+<!-- HERO -->
+<section class="hero relative h-screen w-full flex items-center justify-center">
+
+  <!-- VIDEO BACKGROUND -->
+  <video autoplay muted loop playsinline class="hero-video">
+    <source src="./images/fullvideo.mp4" type="video/mp4">
+  </video>
+
+  <!-- OVERLAY -->
+  <div class="hero-overlay"></div>
+
+  <!-- CONTENT -->
+  <div class="relative z-10 max-w-6xl mx-auto px-6 text-center text-white">
+
+    <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+      Premium Taxi Service in <span class="text-yellow-400">Saranda</span>
+    </h1>
+
+    <p class="mt-6 text-lg opacity-90">
+      Airport transfers, Ksamil rides, Blue Eye tours and fast pickup anywhere.
+    </p>
+
+    <button onclick="sendLocationWhatsApp()"
+      class="mt-8 bg-green-500 px-6 py-4 rounded-2xl font-semibold shadow-lg hover:scale-105 transition">
+      Send my location on WhatsApp
+    </button>
+
+    <!-- STATS -->
+    <div class="grid grid-cols-3 gap-4 mt-10">
+
+      <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-4 py-4">
+        <div class="text-2xl font-bold text-yellow-400">5.0 ★</div>
+        <div class="text-xs opacity-80">Rating</div>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-4 py-4">
+        <div class="text-2xl font-bold text-yellow-400">700+</div>
+        <div class="text-xs opacity-80">Reviews</div>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-4 py-4">
+        <div class="text-2xl font-bold text-yellow-400">10+</div>
+        <div class="text-xs opacity-80">Years</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!--ABOUT -->
+<section class="max-w-6xl mx-auto px-6 py-24" id="about">
+
+<div class="grid md:grid-cols-2 gap-16 items-center">
+
+<!-- IMAGE SIDE -->
+
+<div data-aos="fade-right" class="relative">
+
+<img src="./images/favlogotaxieri.png"
+class="rounded-3xl shadow-xl w-full object-cover">
+
+<div class="absolute -bottom-6 -right-6 bg-yellow-400 text-black px-6 py-4 rounded-2xl shadow-lg font-semibold">
+Trusted by 700+ travelers
+</div>
+
+</div>
+
+
+<!-- TEXT SIDE -->
+
+<div data-aos="fade-left">
+
+<h2 class="text-3xl md:text-4xl font-bold mb-6">
+Your Trusted <span class="text-yellow-500">Local Taxi</span> in Saranda
+</h2>
+
+<p class="text-gray-600 leading-relaxed mb-6">
+Taxi Eri Saranda is a professional local taxi service helping travelers explore
+Saranda, Ksamil, and southern Albania comfortably and safely. With years of
+experience and hundreds of satisfied customers, we provide reliable airport
+transfers, private tours, and fast city rides.
+</p>
+
+<p class="text-gray-600 leading-relaxed mb-8">
+Whether you're arriving at Tirana Airport, visiting the famous Blue Eye,
+or heading to the beaches of Ksamil, we make your journey smooth,
+safe and enjoyable.
+</p>
+
+
+<!-- FEATURES -->
+
+<div class="grid grid-cols-2 gap-4">
+
+<div class="flex items-center gap-3">
+<span class="text-yellow-500 text-xl">✔</span>
+<span class="text-sm">Professional driver</span>
+</div>
+
+<div class="flex items-center gap-3">
+<span class="text-yellow-500 text-xl">✔</span>
+<span class="text-sm">Local knowledge</span>
+</div>
+
+<div class="flex items-center gap-3">
+<span class="text-yellow-500 text-xl">✔</span>
+<span class="text-sm">Clean vehicle</span>
+</div>
+
+<div class="flex items-center gap-3">
+<span class="text-yellow-500 text-xl">✔</span>
+<span class="text-sm">24/7 availability</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+<section class="scroller-container">
+<h2 class="text-3xl font-bold text-center mb-12">Popular Destinations</h2>
+
+<div class="scroller-wrapper">
+
+  <!-- ITEM -->
+  <div class="scroller-slide">
+    <img src="images/ksamil.jpg" />
+    <div class="overlay">
+      <h3>Ksamil Beaches</h3>
+      <p>Crystal clear water & islands</p>
+    </div>
+  </div>
+
+  <div class="scroller-slide">
+    <img src="images/blueeye.jpg" />
+    <div class="overlay">
+      <h3>Blue Eye</h3>
+      <p>Natural turquoise spring</p>
+    </div>
+  </div>
+
+  <div class="scroller-slide">
+    <img src="images/butrint.jpg" />
+    <div class="overlay">
+      <h3>Butrint</h3>
+      <p>Ancient UNESCO ruins</p>
+    </div>
+  </div>
+
+  <div class="scroller-slide">
+    <img src="images/gjirokaster.jpg" />
+    <div class="overlay">
+      <h3>Gjirokaster</h3>
+      <p>Historic stone city</p>
+    </div>
+  </div>
+
+  <div class="scroller-slide">
+    <img src="images/himare.jpg" />
+    <div class="overlay">
+      <h3>Himare</h3>
+      <p>Ionian coast paradise</p>
+    </div>
+  </div>
+
+  <div class="scroller-slide">
+    <img src="images/vlore.jpg" />
+    <div class="overlay">
+      <h3>Vlore</h3>
+      <p>Beautiful coastal city</p>
+    </div>
+  </div>
+
+  <!-- DUPLICATES FOR INFINITE -->
+  <!-- (same items again) -->
+
+  <div class="scroller-slide">
+    <img src="images/ksamil.jpg" />
+    <div class="overlay">
+      <h3>Ksamil Beaches</h3>
+      <p>Crystal clear water & islands</p>
+    </div>
+  </div>
+
+  <div class="scroller-slide">
+    <img src="images/blueeye.jpg" />
+    <div class="overlay">
+      <h3>Blue Eye</h3>
+      <p>Natural turquoise spring</p>
+    </div>
+  </div>
+
+</div>
+
+</section>
+<!-- SERVICES -->
+<section class="max-w-6xl mx-auto px-6 py-20">
+
+<h2 class="text-3xl font-bold mb-12 text-center">Taxi Services in Saranda</h2>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+<div class="border rounded-2xl p-6 shadow-sm hover:-translate-y-2 transition">
+<h3 class="font-semibold text-lg">Saranda Local Taxi</h3>
+<p class="text-gray-600 mt-2">Transport between hotels, beaches and restaurants.</p>
+</div>
+
+<div class="border rounded-2xl p-6 shadow-sm hover:-translate-y-2 transition">
+<h3 class="font-semibold text-lg">Tirana Airport Transfer</h3>
+<p class="text-gray-600 mt-2">Comfortable transfer between Saranda and Tirana Airport.</p>
+</div>
+
+<div class="border rounded-2xl p-6 shadow-sm ">
+<h3 class="font-semibold text-lg">Ksamil Taxi</h3>
+<p class="text-gray-600 mt-2">Quick rides between Saranda and Ksamil beaches.</p>
+</div>
+
+<div class="border rounded-2xl p-6 shadow-sm ">
+<h3 class="font-semibold text-lg">Blue Eye & Butrint Tours</h3>
+<p class="text-gray-600 mt-2">Private tours to Blue Eye spring and Butrint.</p>
+</div>
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- REVIEWS -->
+<section class="max-w-6xl mx-auto px-6 py-20">
+
+<h2 class="text-3xl font-bold text-center mb-12">700+ Happy Customers</h2>
+
+<div class="grid md:grid-cols-3 gap-6">
+
+<div class="bg-white border rounded-2xl p-6 shadow-sm">
+<div class="text-yellow-500 text-lg mb-2">★★★★★</div>
+<p>"Best taxi service in Saranda."</p>
+</div>
+
+<div class="bg-white border rounded-2xl p-6 shadow-sm">
+<div class="text-yellow-500 text-lg mb-2">★★★★★</div>
+<p>"Perfect transfer to Tirana Airport."</p>
+</div>
+
+<div class="bg-white border rounded-2xl p-6 shadow-sm">
+<div class="text-yellow-500 text-lg mb-2">★★★★★</div>
+<p>"Great trip to Ksamil beach."</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MAP -->
+<section class="px-6 py-20">
+
+<h2 class="text-3xl font-bold text-center mb-12">Find Us in Saranda</h2>
+
+<div class="max-w-6xl mx-auto">
+
+<iframe
+src="https://www.google.com/maps?q=Saranda%20Albania&output=embed"
+class="w-full h-96 rounded-2xl border"
+loading="lazy">
+</iframe>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact" class="px-6 py-20 bg-gray-50">
+
+<div class="max-w-xl mx-auto">
+
+<h2 class="text-3xl font-bold mb-8 text-center">Contact Taxi Eri Saranda</h2>
+
+<form class="space-y-4">
+
+<input type="text" placeholder="Name" class="w-full p-4 border rounded-lg">
+<input type="email" placeholder="Email" class="w-full p-4 border rounded-lg">
+<textarea rows="4" placeholder="Message" class="w-full p-4 border rounded-lg"></textarea>
+
+<button class="bg-green-500 text-white w-full py-4 rounded-lg font-semibold">
+Send Message
+</button>
+
+</form>
+
+</div>
+
+</section>
+<div class="taxi">
+
+<div class="loader">
+<ul>
+<li data="T">T</li>
+<li data="A">A</li>
+<li data="X">X</li>
+<li data="I">I</li>
+
+<li class="space"></li>
+
+<li data="E">E</li>
+<li data="R">R</li>
+<li data="I">I</li>
+
+<li class="space"></li>
+
+<li data="S">S</li>
+<li data="A">A</li>
+<li data="R">R</li>
+<li data="A">A</li>
+<li data="N">N</li>
+<li data="D">D</li>
+<li data="A">A</li>
+</ul>
+</div>
+</div>
+<!-- FOOTER -->
+<footer class="bg-gray-900 text-white py-16 px-6 md:px-16">
+
+<div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
+
+<div class="flex items-center gap-4">
+<img src="images/whitelogo.png">
+<div>
+<p class="font-semibold">Taxi Eri Saranda</p>
+<p class="text-sm text-gray-400">Saranda, Albania</p>
+</div>
+</div>
+
+<div>
+<h4 class="font-semibold mb-4">Popular Routes</h4>
+<ul class="space-y-2 text-gray-400 text-sm">
+<li>Saranda → Tirana Airport</li>
+<li>Saranda → Ksamil</li>
+<li>Saranda → Blue Eye</li>
+<li>Saranda → Gjirokaster</li>
+</ul>
+</div>
+
+<div>
+<h4 class="font-semibold mb-4">Contact</h4>
+<ul class="space-y-2 text-gray-400 text-sm">
+<li>+355 67 632 0030</li>
+<li>taxierisaranda@gmail.com</li>
+<li>Saranda, Albania</li>
+</ul>
+</div>
+
+</div>
+
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script src="js/script.js" defer></script>
+
+</body>
+</html>
