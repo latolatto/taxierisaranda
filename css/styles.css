@@ -147,204 +147,113 @@ transform: scale(1.05);
   --background-color: #ffffff;
 }
 
-.scroller-container {
-  --slide-width: clamp(220px, 22vw, 320px);
-  --gap: 20px;
 
+
+/* DESTINATIONS */
+.slider {
   overflow: hidden;
   width: 100%;
   position: relative;
   padding: 40px 0;
 }
 
-/* GRADIENT EDGES (FIXED) */
-.scroller-container::before,
-.scroller-container::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 120px;
-  z-index: 2;
-}
-
-.scroller-container::before {
-  left: 0;
-  background: linear-gradient(to right, white, transparent);
-}
-
-.scroller-container::after {
-  right: 0;
-  background: linear-gradient(to left, white, transparent);
-}
-
 /* TRACK */
-.scroller-wrapper {
+.slides-track {
   display: flex;
-  gap: var(--gap);
+  gap: 20px;
   width: max-content;
-
-  animation: scroll 20s linear infinite;
+  animation: scroll 25s linear infinite;
 }
 
-/* CARD */
-.scroller-slide {
-  position: relative;
-  flex: none;
-  width: var(--slide-width);
-  height: 400px;
-  border-radius: 20px;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-/* IMAGE */
-.scroller-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-/* HOVER ZOOM */
-.scroller-slide:hover img {
-  transform: scale(1.08);
-}
-
-/* TEXT OVERLAY */
-.overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px;
-
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-  color: white;
-}
-
-.overlay h3 {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.overlay p {
-  font-size: 14px;
-  opacity: 0.8;
-}
-
-/* ANIMATION */
-@keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}:root {
-  --background-color: #ffffff;
-}
-
-.scroller-container {
-  --slide-width: clamp(220px, 22vw, 320px);
-  --gap: 20px;
-
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-  padding: 40px 0;
-}
-
-/* GRADIENT EDGES (FIXED) */
-.scroller-container::before,
-.scroller-container::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 120px;
-  z-index: 2;
-}
-
-.scroller-container::before {
-  left: 0;
-  background: linear-gradient(to right, white, transparent);
-}
-
-.scroller-container::after {
-  right: 0;
-  background: linear-gradient(to left, white, transparent);
-}
-
-/* TRACK */
-.scroller-wrapper {
-  display: flex;
-  gap: var(--gap);
-  width: max-content;
-
-  animation: scroll 20s linear infinite;
-}
-
-/* CARD */
-.scroller-slide {
-  position: relative;
-  flex: none;
-  width: var(--slide-width);
-  height: 400px;
-  border-radius: 20px;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-/* IMAGE */
-.scroller-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-/* HOVER ZOOM */
-.scroller-slide:hover img {
-  transform: scale(1.08);
-}
-
-/* TEXT OVERLAY */
-.overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px;
-
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-  color: white;
-}
-
-.overlay h3 {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.overlay p {
-  font-size: 14px;
-  opacity: 0.8;
-}
-
-/* ANIMATION */
-@keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-.scroller-wrapper:hover {
+/* PAUSE */
+.slider:hover .slides-track {
   animation-play-state: paused;
 }
 
+/* CARD */
+.slide {
+  flex: none;
+  position: relative;
+  width: clamp(220px, 25vw, 320px);
+  height: 380px;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+}
 
+/* IMAGE FIX (IMPORTANT) */
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 🔥 kjo e rregullon komplet */
+  transition: transform 0.6s ease;
+}
+
+/* HOVER */
+.slide:hover img {
+  transform: scale(1.08);
+}
+
+/* OVERLAY */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+
+  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+  color: white;
+}
+
+.overlay h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.overlay p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* ANIMATION FIX */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 10px));
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .slide {
+    height: 300px;
+  }
+}
+
+@media (max-width: 500px) {
+  .slide {
+    width: 70vw;
+    height: 260px;
+  }
+}
+
+.destinations-section {
+  padding: 80px 0;
+}
+
+.dest-title {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.dest-title span {
+  color: #facc15;
+}
 .taxi {
   display: flex;
   justify-content: center;
@@ -365,12 +274,35 @@ html, body {
   background: transparent;
   transition: all 0.3s ease;
 }
+/* Update your existing CSS for .nav-call-btn */
+.nav-call-btn {
+    border: 0.125rem solid #ffffff;
+    color: #ffffff;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
 
+/* When the navbar is hovered OR scrolled, make the button visible against white */
+#navbar:hover .nav-call-btn,
+#navbar.scrolled .nav-call-btn {
+    border-color: #1a1a1a;
+    color: #1a1a1a;
+}
+
+/* Specific button hover state - turns Yellow for action */
+.nav-call-btn:hover {
+    background-color:rgba(201, 201, 201, 0.662) !important;
+    border-color: #1a1a1a;
+    color: #1a1a1a !important;
+}
 /* ON SCROLL */
 #navbar.scrolled {
   background: rgba(255,255,255,0.9);
   backdrop-filter: blur(10px);
   box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.05)
 }
 
 /* ON HOVER (only when NOT scrolled) */
@@ -387,4 +319,206 @@ html, body {
   .loader {
     transform: scale(0.8);
   }
+}
+
+@media (max-width: 768px){
+  footer .max-w-6xl{
+    text-align: center;
+  }
+
+  footer .flex{
+    justify-content: center;
+  }
+}
+
+/* MOBILE VERSION ONLY */
+@media (max-width: 600px){
+
+  .loader ul{
+    transform: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: black;
+    border: none;
+    padding: 20px 0;
+  }
+
+  .loader li{
+    padding: 0;
+    font-size: 2.5rem;
+    color: white !important;
+  }
+
+  /* hide animation on mobile */
+  .loader li::before{
+    display: none;
+  }
+
+  /* show only 2 lines */
+  .loader li:nth-child(n+5):not(.space){
+    display: none;
+  }
+
+  .loader li.space{
+    display: none;
+  }
+
+  /* custom text */
+  .loader ul::before{
+  content: "TAXI ERI";
+  font-size: clamp(2rem, 8vw, 3rem);
+      display: block;
+    font-weight: bold;
+    color: #facc15;
+  }
+
+  .loader ul::after{
+  content: "SARANDA";
+  font-size: clamp(1.8rem, 7vw, 2.5rem);
+      display: block;
+    color: white;
+    margin-top: 5px;
+  }
+
+}
+
+.service-card {
+  background: white;
+  border-radius: 20px;
+  padding: 30px 20px;
+  text-align: center;
+  border: 1px solid #eee;
+  transition: all 0.35s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ICON */
+.service-card .icon {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+/* TITLE */
+.service-card h3 {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* TEXT */
+.service-card p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* HOVER EFFECT (ELITE) */
+.service-card:hover {
+
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+  border-color: transparent;
+}
+
+/* GLOW EFFECT */
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(255,200,0,0.15), transparent);
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+
+
+/* MOBILE = ALWAYS ACTIVE */
+@media (max-width: 768px){
+  .service-card {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+  }
+
+  .service-card::before {
+    opacity: 1; /* always visible glow on mobile */
+  }
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+
+
+iframe {
+  filter: grayscale(0.2) contrast(1.1);
+}
+
+.loader {
+  transform: scale(0.9);
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 1024px){
+  .loader {
+    transform: scale(0.75);
+  }
+}
+
+/*REVIEWS */
+#reviews-track {
+    display: flex;
+    width: max-content; /* Vital for the track to line up cards horizontally */
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.review-item {
+    width: 80vw; /* Mobile: predictable width */
+    max-width: 20rem; /* Keep them compact */
+    flex-shrink: 0;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 2rem;
+    border: 1px solid #f1f5f9;
+    transition: all 0.5s ease;
+    opacity: 0.3;
+    transform: scale(0.85);
+    filter: blur(2px);
+}
+
+@media (min-width: 64rem) {
+    .review-item {
+        width: 20rem; /* Desktop: fixed size for math consistency */
+    }
+}
+
+.review-item.active-focus {
+    opacity: 1;
+    transform: scale(1.05);
+    filter: blur(0);
+    border-color: #facc15;
+    box-shadow: 0 1rem 3rem rgba(0,0,0,0.08);
+}
+
+.q-input {
+    width: 100%;
+    padding: 1.25rem;
+    background: #f8fafc;
+    border: 0.125rem solid #f1f5f9;
+    border-radius: 1.25rem;
+    outline: none;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+.q-input:focus {
+    border-color: #facc15;
+    background: #fff;
+    box-shadow: 0 0.5rem 1rem rgba(250, 204, 21, 0.08);
 }
