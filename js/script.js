@@ -1,6 +1,64 @@
 document.addEventListener("DOMContentLoaded", () => {
     
+// Force scroll to top on refresh
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
 
+// Alternative for some browsers
+if (history.scrollRestoration) {
+  history.scrollRestoration = 'manual';
+}
+
+
+//contact form 
+const contactForm = document.getElementById('form');
+const submitBtn = document.getElementById('submit-btn');
+const btnText = document.getElementById('btn-text');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // UI Feedback
+        const originalText = btnText.textContent;
+        btnText.textContent = "Sending...";
+        submitBtn.disabled = true;
+
+        const formData = new FormData(contactForm);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: json
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                // Success Alert
+                alert("Success! Your message has been sent. Eri will contact you shortly.");
+                contactForm.reset();
+            } else {
+                // API Error Alert
+                alert("Oops! " + result.message);
+            }
+        } catch (error) {
+            // Connection Error Alert
+            alert("Connection error. Please check your internet and try again.");
+        } finally {
+            // Restore Button
+            btnText.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+}
   
 function scrollToTop(){
   window.scrollTo({
@@ -22,33 +80,6 @@ window.addEventListener("scroll", () => {
 
 AOS.init();
 
-const WHATSAPP_NUMBER = "355676320030";
-
-function sendLocationWhatsApp(){
-
-  if(!navigator.geolocation){
-    alert("Geolocation not supported");
-    return;
-  }
-
-  navigator.geolocation.getCurrentPosition((position)=>{
-
-    const lat = position.coords.latitude;
-    const lng = position.coords.longitude;
-
-    const mapsLink = `https://maps.google.com/?q=${lat},${lng}`;
-
-    const message = encodeURIComponent(`My location is: ${mapsLink}`);
-
-    window.open(`https://wa.me/355676320030?text=${message}`, "_blank");
-
-  }, () => {
-    alert("Location access denied");
-  });
-
-}
-
-window.sendLocationWhatsApp = sendLocationWhatsApp;
 
 function scrollToContact(){
   const el = document.getElementById("contact");
@@ -60,30 +91,6 @@ function scrollToContact(){
 window.scrollToContact = scrollToContact;
 
 
-// CAROUSEL
-
-
-const carousel = document.getElementById("carousel");
-
-// CLONE ITEMS FOR INFINITE EFFECT
-const items = [...carousel.children];
-items.forEach(item => {
-  const clone = item.cloneNode(true);
-  carousel.appendChild(clone);
-});
-
-let scrollSpeed = 0.5;
-
-function autoScroll() {
-  carousel.scrollLeft += scrollSpeed;
-
-  // RESET WITHOUT JUMP
-  if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
-    carousel.scrollLeft = 0;
-  }
-
-  requestAnimationFrame(autoScroll);
-}
 
 autoScroll();
 

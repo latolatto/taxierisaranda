@@ -41,99 +41,6 @@
   }
 }
 
-/* MAIN */
-.loader ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap; /* 🔥 allows breaking on small screens */
-  
-  font-size: clamp(1.5rem, 6vw, 3rem); /* 🔥 responsive text */
-  
-  transform: skew(-10deg); /* less aggressive */
-  color: rgba(0,0,0,0.2);
-  
-  background: yellow;
-  border: 0.5rem solid yellow;
-  padding: 0.5rem;
-  margin: 0;
-
-  max-width: 100%;
-  overflow: hidden;
-}
-
-.loader li {
-  padding: 0 0.6rem;
-  position: relative;
-}
-
-.loader li.space {
-  padding: 0 1rem;
-}
-.loader li::before{
-content:attr(data);
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-display:flex;
-align-items:center;
-justify-content:center;
-animation:slide-in 5.5s infinite;
-}
-
-.loader li:nth-child(1)::before{animation-delay:0.1s}
-.loader li:nth-child(2)::before{animation-delay:0.2s}
-.loader li:nth-child(3)::before{animation-delay:0.3s}
-.loader li:nth-child(4)::before{animation-delay:0.4s}
-
-.loader li:nth-child(6)::before{animation-delay:0.5s}
-.loader li:nth-child(7)::before{animation-delay:0.6s}
-.loader li:nth-child(8)::before{animation-delay:0.7s}
-
-.loader li:nth-child(10)::before{animation-delay:0.8s}
-.loader li:nth-child(11)::before{animation-delay:0.9s}
-.loader li:nth-child(12)::before{animation-delay:1s}
-.loader li:nth-child(13)::before{animation-delay:1.1s}
-.loader li:nth-child(14)::before{animation-delay:1.2s}
-.loader li:nth-child(15)::before{animation-delay:1.3s}
-.loader li:nth-child(16)::before{animation-delay:1.4s}
-
-@keyframes slide-in{
-
-0%,20%{
-color:transparent;
-top:-100px;
-background:transparent;
-}
-
-20%{
-top:0;
-color:white;
-background:rgba(0,0,0,0.5);
-}
-
-50%{
-top:0;
-color:white;
-background:black;
-}
-
-70%{
-top:-10px;
-color:white;
-background:rgba(0,0,0,0.5);
-}
-
-80%,100%{
-color:transparent;
-top:100px;
-background:transparent;
-}
-
-}
 
 
 #about img {
@@ -270,9 +177,11 @@ html, body {
 }
 
 /* DEFAULT */
+
 #navbar {
   background: transparent;
   transition: all 0.3s ease;
+  border-bottom: 1px solid transparent; /* Start transparent */
 }
 /* Update your existing CSS for .nav-call-btn */
 .nav-call-btn {
@@ -554,11 +463,18 @@ iframe {
 
 
 .marquee-content {
-  animation: marquee-run 30s linear infinite;
+  display: flex;
   width: max-content;
+  animation: marquee-run 25s linear infinite; /* Adjusted speed */
 }
 
 @keyframes marquee-run {
-  from { transform: translateX(0); }
-  to { transform: translateX(-33.33%); }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* Moves exactly half the width */
+}
+
+.group:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(250, 204, 21, 0.15); /* Yellow tinted shadow */
+  border-color: #facc15;
 }
