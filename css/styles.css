@@ -551,3 +551,14 @@ iframe {
     background: #fff;
     box-shadow: 0 0.5rem 1rem rgba(250, 204, 21, 0.08);
 }
+
+
+.marquee-content {
+  animation: marquee-run 30s linear infinite;
+  width: max-content;
+}
+
+@keyframes marquee-run {
+  from { transform: translateX(0); }
+  to { transform: translateX(-33.33%); }
+}
