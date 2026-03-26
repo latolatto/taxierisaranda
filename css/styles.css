@@ -477,3 +477,19 @@ iframe {
   box-shadow: 0 20px 40px rgba(250, 204, 21, 0.15); /* Yellow tinted shadow */
   border-color: #facc15;
 }
+
+/* Change text-yellow-500 from #facc15 to a slightly darker shade for readability */
+.text-yellow-500 {
+    color: #ca8a04 !important; /* Darker Gold/Yellow */
+}
+
+/* Change gray-400 (location text in reviews) to gray-600 */
+.text-gray-400 {
+    color: #4b5563 !important; 
+}
+
+/* The 'Book a Taxi' button text needs to be very dark to stand out on yellow */
+.bg-yellow-400 {
+    background-color: #facc15;
+    color: #1a1a1a; /* Ensuring near-black text on yellow background */
+}

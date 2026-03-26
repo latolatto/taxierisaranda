@@ -144,7 +144,7 @@ bufferSet.forEach((r) => {
         <div class="flex items-center gap-3 mt-6">
             <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center font-bold text-black text-sm">${r.name[0]}</div>
             <div class="text-left">
-                <h4 class="font-bold text-gray-900 text-sm leading-none">${r.name}</h4>
+                <h3 class="font-bold text-gray-900 text-sm leading-none">${r.name}</h3>
                 <span class="text-[0.7rem] text-gray-400 uppercase tracking-wider">${r.loc}</span>
             </div>
         </div>`;
