@@ -169,13 +169,13 @@ function getCardWidth() {
 function updateSlider(animate = true) {
     const cardWidth = getCardWidth();
     const viewportWidth = viewport.offsetWidth;
-    // Align middle of card to middle of viewport
+    
+    // Calculate center exactly
     const centerOffset = (viewportWidth - (cardWidth - 24)) / 2;
+    currentTranslate = -(currentIndex * cardWidth) + centerOffset;
     
-    // Math.round prevents 1px rounding glitches on high-res screens
-    currentTranslate = Math.round(-(currentIndex * cardWidth) + centerOffset);
-    
-    track.style.transition = animate ? 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)' : 'none';
+    // Use a very specific cubic-bezier for that "Premium" feel
+    track.style.transition = animate ? 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)' : 'none';
     track.style.transform = `translateX(${currentTranslate}px)`;
 
     const allCards = track.querySelectorAll('.review-item');
@@ -228,17 +228,25 @@ const onStart = (e) => {
     stopAutoPlay();
     isDragging = true;
     startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+    
+    // Stop the CSS transition immediately so it doesn't "snap back" while you touch it
     track.style.transition = 'none';
-    // Get current position during drag
-    const matrix = new WebKitCSSMatrix(window.getComputedStyle(track).transform);
-    prevTranslate = matrix.m41;
+
+    // Get the current position mid-flight
+    const style = window.getComputedStyle(track);
+    const matrix = new WebKitCSSMatrix(style.transform);
+    prevTranslate = matrix.m41; 
 };
 
 const onMove = (e) => {
     if (!isDragging) return;
     const x = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
     const walk = x - startX;
-    track.style.transform = `translateX(${prevTranslate + walk}px)`;
+    
+    // Use requestAnimationFrame for the smoothest possible movement
+    requestAnimationFrame(() => {
+        track.style.transform = `translateX(${prevTranslate + walk}px)`;
+    });
 };
 
 const onEnd = (e) => {

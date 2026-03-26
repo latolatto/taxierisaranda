@@ -384,9 +384,10 @@ iframe {
     gap: 1.5rem;
     width: max-content;
     will-change: transform;
-    /* transition removed from here to prevent fighting with JS */
+    /* Use the GPU for smoother movement on iOS */
+    transform: translateZ(0); 
     backface-visibility: hidden;
-    
+    -webkit-perspective: 1000;
 }
 
 #reviews-viewport {
@@ -397,23 +398,24 @@ iframe {
     position: relative;
     cursor: grab;
     padding: 2rem 0;
-    touch-action: pan-y; /* Critical for smooth mobile swiping */
+    /* This ensures vertical scrolling works while horizontal swiping is smooth */
+    touch-action: pan-y; 
 }
 
 /* 3. The Individual Card */
 .review-item {
-    /* Mobile First: Card takes up most of the screen */
-    width: 80vw; 
-    max-width: 22rem; /* Limits size on desktop */
-    flex-shrink: 0; /* Prevents cards from squishing */
+    /* FIX: Use a fixed width on mobile for math stability */
+    width: 280px; 
+    flex-shrink: 0;
     background: #ffffff;
     padding: 2rem;
     border-radius: 2rem;
     border: 1px solid #f1f5f9;
     user-select: none;
-    transition: all 0.5s ease;
     
-    /* Anti-Glitch properties */
+    /* FIX: Remove 'all' - only transition specific properties to save battery/CPU */
+    transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease, border-color 0.4s ease;
+    
     opacity: 0.3;
     transform: scale(0.9);
     filter: blur(1px);
@@ -430,7 +432,7 @@ iframe {
 
 @media (min-width: 64rem) {
     .review-item {
-        width: 20rem; /* Desktop: fixed size for math consistency */
+        width: 22rem; /* Desktop: fixed size for math consistency */
     }
 }
 
