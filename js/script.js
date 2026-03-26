@@ -92,7 +92,6 @@ window.scrollToContact = scrollToContact;
 
 
 
-autoScroll();
 
 
 
