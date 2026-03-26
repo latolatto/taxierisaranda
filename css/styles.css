@@ -389,7 +389,8 @@ iframe {
     width: max-content;
     will-change: transform;
     /* transition removed from here to prevent fighting with JS */
-    backface-visibility: hidden;
+    /* backface-visibility: hidden; */
+
 }
 
 #reviews-viewport {
