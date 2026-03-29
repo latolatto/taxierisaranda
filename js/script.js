@@ -103,13 +103,14 @@ window.scrollToContact = scrollToContact;
  * Features: 6-set Buffer, Math.round Precision, Reflow Snap, Auto-Play
  */
 
+// 1. DATA ORIGJINALE
 const reviews = [
     { name: "Milka K.", loc: "Rwanda", text: "We found we put a wrong location. But he was very understanding, helpful and a good driver. Thank you Eri." },
     { name: "Charlene M.", loc: "Zimbabwe", text: "Driver picked us from our hotel in Sarande to Tirana. He was very professional and we were so comfortable in there. Took a picture of the views on our way. Air conditioning was good . Highly recommend" },
     { name: "Jess R.", loc: "UK", text: "Couldn't ask for better service. Excellent driver, reliable, fully functioning luxury car and even opens the door. Would recommend to all" },
     { name: "HB McKenna", loc: "Ireland", text: "Excellent service. On time. Good driver. We will use again for future trips. Strongly recommend." },
     { name: "Alex", loc: "USA", text: "Quick to respond. Very nice. And no problem finding pickup and drop off locations. This is my go to taxi service for the area." },
-        { name: "Christian T.", loc: "Ivory Coast", text: "Very good driver and polite too . Will recommend him to anyone who need taxi in Albania" },
+    { name: "Christian T.", loc: "Ivory Coast", text: "Very good driver and polite too . Will recommend him to anyone who need taxi in Albania" },
     { name: "Antje B.", loc: "Germany", text: "Great experience. The driver was friendly, courteous and accommodating." },
     { name: "Stefan H.", loc: "Sweden", text: "On time, friendly and very service minded. I recommend Eri taxi if you want a fast and safe trip around Saranda and more!" },
     { name: "Jaypee P.", loc: "Philippines", text: "The taxi is clean and the driver is very helpful. I'd recommended." },
@@ -122,192 +123,126 @@ const reviews = [
     { name: "Michelle L.", loc: "Brazil", text: "Great service, from helping with our bags, to getting us water and giving recommendations. 10/10" },
     { name: "Daisy H.", loc: "UK", text: "best taxi driver, lovely service to Ksmail. Very useful would recommend." },
     { name: "Ivy W.", loc: "China", text: "Eri was super friendly and chill! On time, safe driver. Highly recommend if you need a taxi around Sarandë!" }
-
 ];
+
+// 2. KRIJIMI I BUFFER-IT (3 SETS PËR LOOP INFINIT)
+const bufferSet = [...reviews, ...reviews, ...reviews];
+
 
 const track = document.getElementById('reviews-track');
 const viewport = document.getElementById('reviews-viewport');
-const nextBtn = document.getElementById('nextBtn');
-const prevBtn = document.getElementById('prevBtn');
 
-// 1. INJECT 6 SETS FOR INFINITE BUFFER
-const bufferSet = [...reviews, ...reviews, ...reviews, ...reviews, ...reviews, ...reviews, ...reviews, ...reviews, ...reviews, ...reviews, ...reviews, ...reviews, ...reviews, ...reviews, ...reviews, ...reviews, ...reviews, ...reviews, ...reviews];
-
-bufferSet.forEach((r) => {
-    const card = document.createElement('div');
-    card.className = `review-item flex flex-col justify-between`;
-    card.innerHTML = `
-        <div>
-            <div class="text-yellow-400 mb-3 text-sm">★★★★★</div>
-            <p class="text-gray-700 italic text-[0.95rem] leading-relaxed">"${r.text}"</p>
-        </div>
-        <div class="flex items-center gap-3 mt-6">
-            <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center font-bold text-black text-sm">${r.name[0]}</div>
-            <div class="text-left">
-                <h3 class="font-bold text-gray-900 text-sm leading-none">${r.name}</h3>
-                <span class="text-[0.7rem] text-gray-400 uppercase tracking-wider">${r.loc}</span>
+// 3. RENDERIMI (STILIMI YT ORIGJINAL)
+function renderCards() {
+    if (!track) return;
+    track.innerHTML = '';
+    bufferSet.forEach((r) => {
+        const card = document.createElement('div');
+        card.className = `review-item flex flex-col justify-between`;
+        card.innerHTML = `
+            <div>
+                <div class="text-yellow-500 mb-3 text-sm">★★★★★</div>
+                <p class="text-gray-700 italic text-[0.95rem] leading-relaxed">"${r.text}"</p>
             </div>
-        </div>`;
-    track.appendChild(card);
-});
-
-// 2. STATE MANAGEMENT
-let currentIndex = reviews.length * 2; // Start in the second "real" set
-let isDragging = false;
-let startX = 0;
-let currentTranslate = 0;
-let prevTranslate = 0;
-let autoPlayInterval;
-
-function getCardWidth() {
-    const card = track.querySelector('.review-item');
-    const gap = 24; // 1.5rem = 24px
-    return card.offsetWidth + gap;
+            <div class="flex items-center gap-3 mt-6">
+                <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center font-bold text-black text-sm">${r.name[0]}</div>
+                <div class="text-left">
+                    <h3 class="font-bold text-gray-900 text-sm leading-none">${r.name}</h3>
+                    <span class="text-[0.7rem] text-gray-600 font-bold uppercase tracking-wider">${r.loc}</span>
+                </div>
+            </div>`;
+        track.appendChild(card);
+    });
 }
 
-// 3. THE SLIDER ENGINE
+// 4. ENGINE I SLIDER-IT
+let currentIndex = reviews.length; // Nisim te seti i dytë
+let isDragging = false;
+let startX = 0;
+let prevTranslate = 0;
+let currentTranslate = 0;
+
 function updateSlider(animate = true) {
-    const cardWidth = getCardWidth();
+    const card = track.querySelector('.review-item');
+    if (!card) return;
+
+    const cardWidth = card.offsetWidth;
+    const gap = 24; 
     const viewportWidth = viewport.offsetWidth;
     
-    // Calculate center exactly
-    const centerOffset = (viewportWidth - (cardWidth - 24)) / 2;
-    currentTranslate = -(currentIndex * cardWidth) + centerOffset;
-    
-    // Use a very specific cubic-bezier for that "Premium" feel
-    track.style.transition = animate ? 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)' : 'none';
+    // Centrim perfekt
+    const centerOffset = (viewportWidth / 2) - (cardWidth / 2);
+    currentTranslate = -(currentIndex * (cardWidth + gap)) + centerOffset;
+
+    track.style.transition = animate ? 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)' : 'none';
     track.style.transform = `translateX(${currentTranslate}px)`;
 
+    // Klasa active-focus për kartën në mes
     const allCards = track.querySelectorAll('.review-item');
     allCards.forEach((c, i) => {
         c.classList.toggle('active-focus', i === currentIndex);
     });
-    
-    prevTranslate = currentTranslate;
 }
 
-// 4. THE GLITCH-KILLER RESET
-function handleInfiniteLoop() {
-    const totalReviews = reviews.length;
-    // If we've drifted out of the "safe" middle zones
-    if (currentIndex >= totalReviews * 4 || currentIndex <= totalReviews) {
-        track.style.transition = 'none'; // Kill animation
-        
-        // Calculate new index in the middle set
-        currentIndex = (currentIndex % totalReviews) + totalReviews * 2;
-        
-        const cardWidth = getCardWidth();
-        const viewportWidth = viewport.offsetWidth;
-        const centerOffset = (viewportWidth - (cardWidth - 24)) / 2;
-        currentTranslate = Math.round(-(currentIndex * cardWidth) + centerOffset);
-        
-        // FORCE REFLOW: Essential to make the 'transition: none' stick
-        track.offsetHeight; 
-        
-        track.style.transform = `translateX(${currentTranslate}px)`;
-        prevTranslate = currentTranslate;
+function handleInfinite() {
+    const total = reviews.length;
+    if (currentIndex <= 0) {
+        currentIndex = total;
+        updateSlider(false);
+    } else if (currentIndex >= total * 2) {
+        currentIndex = total;
+        updateSlider(false);
     }
 }
 
-// 5. AUTO-PLAY
-function startAutoPlay() {
-    stopAutoPlay();
-    autoPlayInterval = setInterval(() => {
-        currentIndex++;
-        updateSlider(true);
-        setTimeout(handleInfiniteLoop, 650);
-    }, 5000);
-}
-
-function stopAutoPlay() {
-    clearInterval(autoPlayInterval);
-}
-
-// 6. INTERACTION (DRAG & SWIPE)
+// 5. INTERAKTIONET (TOUCH & MOUSE)
 const onStart = (e) => {
-    stopAutoPlay();
     isDragging = true;
     startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-    
-    // Stop the CSS transition immediately so it doesn't "snap back" while you touch it
     track.style.transition = 'none';
-
-    // Get the current position mid-flight
     const style = window.getComputedStyle(track);
     const matrix = new WebKitCSSMatrix(style.transform);
-    prevTranslate = matrix.m41; 
+    prevTranslate = matrix.m41;
 };
 
 const onMove = (e) => {
     if (!isDragging) return;
     const x = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-    const walk = x - startX;
-    
-    // Use requestAnimationFrame for the smoothest possible movement
-    requestAnimationFrame(() => {
-        track.style.transform = `translateX(${prevTranslate + walk}px)`;
-    });
+    currentTranslate = prevTranslate + (x - startX);
+    track.style.transform = `translateX(${currentTranslate}px)`;
 };
 
 const onEnd = (e) => {
     if (!isDragging) return;
     isDragging = false;
-    const x = e.type.includes('mouse') ? e.pageX : (e.changedTouches ? e.changedTouches[0].clientX : startX);
+    const x = e.type.includes('mouse') ? e.pageX : e.changedTouches[0].clientX;
     const movedBy = x - startX;
 
-    if (Math.abs(movedBy) > 70) {
+    if (Math.abs(movedBy) > 50) {
         if (movedBy > 0) currentIndex--;
         else currentIndex++;
     }
-    
+
     updateSlider(true);
-    setTimeout(() => {
-        handleInfiniteLoop();
-        startAutoPlay();
-    }, 650);
+    setTimeout(handleInfinite, 600);
 };
 
-// 7. EVENT LISTENERS
+// 6. INITIALIZATION
+renderCards();
+
+// Përdorim një vonesë të vogël që Browser të llogarisë width-in saktë
+setTimeout(() => {
+    updateSlider(false);
+}, 100);
+
+window.addEventListener('resize', () => updateSlider(false));
+
 viewport.addEventListener('mousedown', onStart);
 window.addEventListener('mousemove', onMove);
 window.addEventListener('mouseup', onEnd);
-
-viewport.addEventListener('touchstart', onStart, { passive: true });
-viewport.addEventListener('touchmove', onMove, { passive: true });
+viewport.addEventListener('touchstart', onStart, {passive: true});
+viewport.addEventListener('touchmove', onMove, {passive: true});
 viewport.addEventListener('touchend', onEnd);
 
-nextBtn.onclick = () => {
-    stopAutoPlay();
-    currentIndex++;
-    updateSlider(true);
-    setTimeout(() => {
-        handleInfiniteLoop();
-        startAutoPlay();
-    }, 650);
-};
-
-prevBtn.onclick = () => {
-    stopAutoPlay();
-    currentIndex--;
-    updateSlider(true);
-    setTimeout(() => {
-        handleInfiniteLoop();
-        startAutoPlay();
-    }, 650);
-};
-
-viewport.addEventListener('mouseenter', stopAutoPlay);
-viewport.addEventListener('mouseleave', startAutoPlay);
-
-// 8. INITIALIZE
-window.addEventListener('resize', () => {
-    track.style.transition = 'none';
-    updateSlider(false);
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-        updateSlider(false);
-        startAutoPlay();
-    }, 300);
-});
+document.getElementById('nextBtn').onclick = () => { currentIndex++; updateSlider(true); setTimeout(handleInfinite, 600); };
+document.getElementById('prevBtn').onclick = () => { currentIndex--; updateSlider(true); setTimeout(handleInfinite, 600); };
