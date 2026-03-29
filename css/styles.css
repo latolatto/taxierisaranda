@@ -397,7 +397,7 @@ iframe {
 .review-item {
     flex-shrink: 0;
     /* Mobile: 1 kartë që zë 80-85% të gjerësisë */
-    width: 85vw; 
+    width: 80vw; 
     background: #ffffff;
     padding: 2rem;
     border-radius: 2rem;
