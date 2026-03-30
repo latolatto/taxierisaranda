@@ -1,4 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    const video = document.getElementById('heroVideo');
+
+if (video) {
+    // Detyro luajtjen e videos
+    const playVideo = () => {
+        video.play().catch(error => {
+            console.log("Autoplay u bllokua nga browser-i, po provoj përsëri...");
+            // Nëse dështon (psh. Low Power Mode), provojmë përsëri në klikimin e parë të përdoruesit
+            document.addEventListener('touchstart', () => {
+                video.play();
+            }, { once: true });
+        });
+    };
+
+    playVideo();
+}
     
 // Force scroll to top on refresh
 window.onbeforeunload = function () {
