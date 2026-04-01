@@ -13,48 +13,27 @@
 
 
 
-/* VIDEO */
 .hero {
-    position: absolute; /* E nxjerr nga rreshtimi i flex dhe e çon në sfond */
-    top: 0;
-    left: 0;
-    width: 100%;        /* E detyron të hapet sa i gjithë ekrani */
-    height: 100%;       /* E detyron të hapet sa i gjithë ekrani */
-    z-index: 0;         /* E mban mbrapa tekstit */
-    overflow: hidden;
-    
-    /* SFONDI QË SHFAQET DIREKT */
-    background-color: #111; 
-    background-image: url('../images/bannerimg.webp'); /* E leme me ../ sepse e ke ne folderin css */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: url('../images/bannerimg.webp') center/cover no-repeat; /* Fotoja rri gjithmonë poshtë */
 }
 
-
-
-/* VIDEO */
-
 .hero-video {
-
     position: absolute;
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
     top: 0;
-
     left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0; /* Nis e fshehur */
+    transition: opacity 1s ease-in-out;
+}
 
-    z-index: 0;
-
-    /* KJO ËSHTË KRITIKE */
-
-    pointer-events: none;
-
+/* Kjo klasë do shtohet nga JS vetëm nëse videoja luan vërtet */
+.video-loaded {
+    opacity: 1 !important;
 }
 
 

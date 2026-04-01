@@ -3,27 +3,27 @@ document.addEventListener("DOMContentLoaded", () => {
     //VIDEO BACKGOUND
 const video = document.getElementById('heroVideo');
 
-    if (video) {
-        // 1. Provojmë ta luajmë menjëherë
-        const promise = video.play();
+if (video) {
+    // Provojmë ta luajmë
+    video.play().then(() => {
+        // Nëse luhet (Bateria OK), e shfaqim
+        video.classList.add('video-loaded');
+    }).catch(error => {
+        // Nëse bllokohet (Low Power Mode), e lëmë opacity 0
+        // Në këtë rast përdoruesi do shohë bannerimg.webp që vumë te .hero background
+        console.log("Low Power Mode active - Video hidden, showing poster image.");
+    });
 
-        if (promise !== undefined) {
-            promise.then(() => {
-                // Videoja nisi! E bëjmë të dukshme
-                video.style.opacity = "1";
-            }).catch(error => {
-                // Autoplay u bllokua (ndoshta Low Power Mode)
-                console.log("Autoplay blocked");
-                // E mbajmë opacity 0 që të mos shihet butoni Play
-                video.style.opacity = "0"; 
-            });
-        }
+    // Për siguri, nëse sistemi e lejon lëvizjen më vonë
+    video.addEventListener('playing', () => {
+        video.classList.add('video-loaded');
+    });
+}
 
-        // 2. Event dëgjues nëse videoja nis më vonë
-        video.addEventListener('playing', () => {
-            video.style.opacity = "1";
-        });
-    }
+
+
+
+
 // Force scroll to top on refresh
 window.onbeforeunload = function () {
   window.scrollTo(0, 0);
