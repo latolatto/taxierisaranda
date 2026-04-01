@@ -9,13 +9,24 @@
 }
 /* VIDEO */
 .hero-video {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  top: 0;
-  left: 0;
-  z-index: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    /* KJO ËSHTË KRITIKE */
+    pointer-events: none; 
+}
+
+/* Sigurohemi që asnjë kontroll të mos guxojë të dalë */
+video::-webkit-media-controls,
+video::-webkit-media-controls-start-playback-button,
+video::-webkit-media-controls-panel {
+    display: none !important;
+    -webkit-appearance: none !important;
+    opacity: 0 !important;
 }
 
 /* DARK OVERLAY */
@@ -479,21 +490,5 @@ iframe {
     color: #1a1a1a; /* Ensuring near-black text on yellow background */
 }
 
-
-/* Fsheh butonin Play në iOS */
-video::-webkit-media-controls-start-playback-button {
-    display: none !important;
-    -webkit-appearance: none;
-}
-
-/* Fsheh çdo kontroll tjetër që mund të shfaqet */
-video::-webkit-media-controls {
-    display: none !important;
-}
-
-/* Sigurohet që videoja të mos hapet në 'Full Screen' automatikisht */
-video::-webkit-media-controls-enclosure {
-    display: none !important;
-}
 
 

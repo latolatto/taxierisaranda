@@ -1,21 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    //VIDEO BACKGOUND
     const video = document.getElementById('heroVideo');
 
-if (video) {
-    // Detyro luajtjen e videos
-    const playVideo = () => {
-        video.play().catch(error => {
-            console.log("Autoplay u bllokua nga browser-i, po provoj përsëri...");
-            // Nëse dështon (psh. Low Power Mode), provojmë përsëri në klikimin e parë të përdoruesit
-            document.addEventListener('touchstart', () => {
-                video.play();
-            }, { once: true });
-        });
-    };
+    if (video) {
+        // 1. Provojmë ta luajmë menjëherë
+        const promise = video.play();
 
-    playVideo();
-}
+        if (promise !== undefined) {
+            promise.then(() => {
+                // Videoja nisi! E bëjmë të dukshme
+                video.style.opacity = "1";
+            }).catch(error => {
+                // Autoplay u bllokua (ndoshta Low Power Mode)
+                console.log("Autoplay blocked");
+                // E mbajmë opacity 0 që të mos shihet butoni Play
+                video.style.opacity = "0"; 
+            });
+        }
+
+        // 2. Event dëgjues nëse videoja nis më vonë
+        video.addEventListener('playing', () => {
+            video.style.opacity = "1";
+        });
+    }
     
 // Force scroll to top on refresh
 window.onbeforeunload = function () {

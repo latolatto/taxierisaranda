@@ -102,19 +102,26 @@ Contact
 <section class="hero relative h-screen w-full flex items-center justify-center" >
 
   <!-- VIDEO BACKGROUND -->
-<video 
-  autoplay 
-  muted 
-  loop 
-  playsinline 
-  webkit-playsinline 
-  preload="auto" 
-  poster="images/bannerimg.webp" 
-  class="hero-video"
-  id="heroVideo">
-    <source src="./images/fullvideo.webm" type="video/webm">
-    <source src="./images/fullvideo.mp4" type="video/mp4">
-</video>
+<div class="hero">
+    <div class="hero-overlay"></div>
+    
+    <video 
+        id="heroVideo"
+        class="hero-video"
+        muted 
+        autoplay 
+        loop 
+        playsinline 
+        webkit-playsinline 
+        disableremoteplayback
+        preload="auto"
+        poster="images/bannerimg.webp"
+        style="opacity: 0; transition: opacity 0.5s ease-in-out;" 
+    >
+        <source src="./images/fullvideo.mp4" type="video/mp4">
+        <source src="./images/fullvideo.webm" type="video/webm">
+    </video>
+</div>
 
   <!-- OVERLAY -->
   <div class="hero-overlay"></div>
