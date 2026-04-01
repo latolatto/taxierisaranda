@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     //VIDEO BACKGOUND
-    const video = document.getElementById('heroVideo');
+const video = document.getElementById('heroVideo');
 
     if (video) {
         // 1. Provojmë ta luajmë menjëherë
@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
             video.style.opacity = "1";
         });
     }
-    
 // Force scroll to top on refresh
 window.onbeforeunload = function () {
   window.scrollTo(0, 0);

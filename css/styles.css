@@ -1,39 +1,85 @@
 .header-logo {
    width:3rem;
 }
-.hero {
-  overflow: hidden;
-}
+
 \.menu:hover{
    background-color: white;
 }
-/* VIDEO */
-.hero-video {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    /* KJO ËSHTË KRITIKE */
-    pointer-events: none; 
+
+.hero-section{
+    overflow: hidden;
+
 }
 
-/* Sigurohemi që asnjë kontroll të mos guxojë të dalë */
-video::-webkit-media-controls,
-video::-webkit-media-controls-start-playback-button,
-video::-webkit-media-controls-panel {
-    display: none !important;
-    -webkit-appearance: none !important;
-    opacity: 0 !important;
+
+
+/* VIDEO */
+.hero {
+    position: absolute; /* E nxjerr nga rreshtimi i flex dhe e çon në sfond */
+    top: 0;
+    left: 0;
+    width: 100%;        /* E detyron të hapet sa i gjithë ekrani */
+    height: 100%;       /* E detyron të hapet sa i gjithë ekrani */
+    z-index: 0;         /* E mban mbrapa tekstit */
+    overflow: hidden;
+    
+    /* SFONDI QË SHFAQET DIREKT */
+    background-color: #111; 
+    background-image: url('../images/bannerimg.webp'); /* E leme me ../ sepse e ke ne folderin css */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
+
+
+/* VIDEO */
+
+.hero-video {
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    top: 0;
+
+    left: 0;
+
+    z-index: 0;
+
+    /* KJO ËSHTË KRITIKE */
+
+    pointer-events: none;
+
+}
+
+
+
+/* Sigurohemi që asnjë kontroll të mos guxojë të dalë */
+
+video::-webkit-media-controls,
+
+video::-webkit-media-controls-start-playback-button,
+
+video::-webkit-media-controls-panel {
+
+    display: none !important;
+
+    -webkit-appearance: none !important;
+
+    opacity: 0 !important;
+
+} 
 
 /* DARK OVERLAY */
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.3);
   z-index: 1;
 }
 
@@ -491,4 +537,20 @@ iframe {
 }
 
 
+/* Zhduk reklamat e vogla 'Free Google Reviews Widget' nëse ka */
+[class*="AppCopy__Container"], [class*="WidgetTitle__Header"] + a {
+    display: none !important;
+}
 
+/* Forcojmë fontin tënd dhe ngjyrën Gold */
+.elfsight-app-b27f8108-0a6b-4da7-ab13-8fa9c4814c82 * {
+    font-family: inherit !important; /* Përdor fontin e faqes tënde */
+}
+
+/* Ndryshojmë ngjyrën e butonit "Write a Review" që të jetë Gold-i ynë */
+div[class*="CommonButton__Container"] {
+    background-color: #facc15 !important; 
+    color: #000 !important;
+    font-weight: bold !important;
+    border-radius: 12px !important;
+}

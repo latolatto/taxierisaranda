@@ -99,28 +99,47 @@ Contact
 
 
 <!-- HERO -->
-<section class="hero relative h-screen w-full flex items-center justify-center" >
+<section class="hero-section relative h-screen w-full flex items-center justify-center" >
 
   <!-- VIDEO BACKGROUND -->
 <div class="hero">
+
     <div class="hero-overlay"></div>
-    
-    <video 
+
+   
+
+    <video
+
         id="heroVideo"
+
         class="hero-video"
-        muted 
-        autoplay 
-        loop 
-        playsinline 
-        webkit-playsinline 
+
+        muted
+
+        autoplay
+
+        loop
+
+        playsinline
+
+        webkit-playsinline
+
         disableremoteplayback
+
         preload="auto"
+
         poster="images/bannerimg.webp"
-        style="opacity: 0; transition: opacity 0.5s ease-in-out;" 
+
+        style="opacity: 0; transition: opacity 0.5s ease-in-out;"
+
     >
+
         <source src="./images/fullvideo.mp4" type="video/mp4">
+
         <source src="./images/fullvideo.webm" type="video/webm">
+
     </video>
+
 </div>
 
   <!-- OVERLAY -->
@@ -490,16 +509,20 @@ Popular <span class="text-yellow-500">Destinations & Day Trips</span>
     With over <strong>700+ 5-star Google Reviews</strong>, Taxi Eri Saranda is recognized as the most reliable taxi service for airport transfers and local rides in Saranda.
   </p>
       
-      <div class="mt-[1.5rem] min-h-[6.25rem] flex justify-center">
-        <div class="review-widget_net" 
-             data-uuid="4bfd4019-fddd-457d-8d66-af0779c2a352" 
-             data-template="3" 
-             data-lang="en" 
-             data-theme="light">
-             Loading Google Reviews...
-        </div>
-        <script type="text/javascript" src="https://grwapi.net/widget.min.js" async></script>
-      </div>
+    <div class="elfsight-app-b27f8108-0a6b-4da7-ab13-8fa9c4814c82" data-elfsight-app-lazy></div>
+
+<script>
+  // Kjo pjesë e ngarkon Elfsight vetëm kur njeriu lëviz në faqe
+  window.addEventListener('scroll', function() {
+    if (!window.elfsightLoaded) {
+      const script = document.createElement('script');
+      script.src = "https://elfsightcdn.com/platform.js";
+      script.async = true;
+      document.body.appendChild(script);
+      window.elfsightLoaded = true;
+    }
+  }, { once: true });
+</script>
     </div>
 
     <div id="reviews-viewport" class="relative overflow-hidden max-w-[65rem] mx-auto cursor-grab active:cursor-grabbing">
