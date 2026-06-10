@@ -532,3 +532,7 @@ div[class*="CommonButton__Container"] {
     font-weight: bold !important;
     border-radius: 12px !important;
 }
+
+.hs-chat-root .hs-container-floating-bar.hs-bottom-pstn .hs-f-round:last-child {
+    margin-bottom: 23px !important; /* Shtojmë hapësirë poshtë për të shmangur mbivendosjen me footer-in */
+}
